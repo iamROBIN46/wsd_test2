@@ -1,0 +1,218 @@
+<html>
+<head>
+<title>Registration form </title>
+<style>
+#main
+{
+width:650px;
+height:550px;
+border:1px solid black;
+margin:auto;
+background:#F3F3F3;
+box-shadow:1px 1px 1px 1px grey;
+}
+#row
+{
+width:99%;
+height:40px;
+border:1px solid #F3F3F3;
+}
+.col
+{
+width:32%;
+height:89%;
+border:1px solid #F3F3F3;
+float:left;
+margin-left:2px;
+}
+input
+{
+height:30px;
+width:200px;
+border-radius:2px;
+}
+input{type=submit}
+{
+width:100px;
+}
+input:hover{border:1px solid red}
+input:hover{background:gray}
+input{font-size:25px}
+.r
+{
+width:10px;
+height:15px;
+font-size:10px;
+}
+</style>
+<script type="text/javascript">
+function chkblnk(eid,errid)
+{
+var x=document.getElementById(eid).value;
+if(x=="")
+{
+document.getElementById(errid).innerHTML="pls fill this field";
+}
+else
+{
+document.getElementById(errid).innerHTML="";
+}
+}
+
+function chkAplha(event,err)
+{
+if(!((event.which>=65 && event.which<=90) || (event.which>=97 && event.which<=122) || event.which==0 || event.which==8))
+{
+document.getElementById(err).innerHTML="invalid name format";
+return false;
+}
+}
+function agecheck() {
+     
+    var x=document.getElementById("age").value;
+     if (x < 1 || x > 60)
+     {
+            alert("enter age between 1 to 60")
+     }
+
+}
+function IsMobileNumber() {
+    var mob = /^[1-9]{1}[0-9]{9}$/;
+    var txtMobile = document.getElementById("mobno");
+    if (mob.test(txtMobile.value) == false) {
+        alert("Please enter valid mobile number.");
+        txtMobile.focus();
+        return false;
+    }
+    return true;
+}
+function checkForm(form)
+  {
+    
+    re = /^\w+$/;
+
+    if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value) {
+      if(form.pwd1.value.length < 6) {
+        alert("Error: Password must contain at least six characters!");
+        form.pwd1.focus();
+        return false;
+      }
+      if(form.pwd1.value == form.username.value) {
+        alert("Error: Password must be different from Username!");
+        form.pwd1.focus();
+        return false;
+      }
+      re = /[0-9]/;
+      if(!re.test(form.pwd1.value)) {
+        alert("Error: password must contain at least one number (0-9)!");
+        form.pwd1.focus();
+        return false;
+      }
+      re = /[a-z]/;
+      if(!re.test(form.pwd1.value)) {
+        alert("Error: password must contain at least one lowercase letter (a-z)!");
+        form.pwd1.focus();
+        return false;
+      }
+      re = /[A-Z]/;
+      if(!re.test(form.pwd1.value)) {
+        alert("Error: password must contain at least one uppercase letter (A-Z)!");
+        form.pwd1.focus();
+        return false;
+      }
+    } else {
+      alert("Error: Please check that you've entered and confirmed your password!");
+      form.pwd1.focus();
+      return false;
+    }
+
+    alert("You entered a valid password: " + form.pwd1.value);
+    return true;
+  }
+
+function chkeid()
+{
+var e=document.getElementById("e").value;
+var atpos=e.indexOf("@");
+var dotpos=e.lastIndexOf(".");
+if(atpos<4 || dotpos<atpos+3)
+{
+document.getElementById("error2").innerHTML="invalid email";
+}
+else
+{
+document.getElementById("error2").innerHTML="";
+}
+//alert(atpos+" "+dotpos);
+}
+</script>
+</head>
+<body background="chr.png">
+<div id="main">
+<h1 align="center">GATEWAYS-TECHOVID 2020</h1>
+<h5 align="center">Registration Page</h5>
+<div id="row" style="color:black">
+<div class="col"> First Name</div>
+<div class="col"><input type="text" id="fn"  onkeypress="return chkAplha(event,'error')" onblur="chkblnk('fn','error')"/></div>
+<div class="col" id="error" style="color:red"></div>
+</div>
+<div id="row" style="color:black">
+<div class="col"> Last Name</div>
+<div class="col"><input type="text" id="ln" onblur="chkblnk('ln','error1')"/></div>
+<div class="col" id="error1" style="color:red"></div>
+</div>
+<div id="row" style="color:black">
+    <div class="col">Age</div>
+    <div class="col"><input type="number" id="age" onblur="agecheck('ln','error1')"/></div>
+    <div class="col" id="error1" style="color:red"></div>
+</div>
+<div id="row" style="color:black">
+    <div class="col"> College</div>
+    <div class="col"><input type="text" id="fn"  onkeypress="return chkAplha(event,'error')" onblur="chkblnk('fn','error')"/></div>
+    <div class="col" id="error" style="color:red"></div>
+</div>
+<div id="row" style="color:black">
+    <div class="col">Mobile no:</div>
+    <div class="col"><input type="number" id="mobno" onblur="IsMobileNumber('ln','error1')"/></div>
+    <div class="col" id="error1" style="color:red"></div>
+</div>
+<div id="row" style="color:black">
+    <div class="col">Your Email id</div>
+    <div class="col">
+    <input type="text" id="e" onblur="chkeid()"/></div>
+    <div class="col" id="error2" style="color:red"></div>
+</div>
+<!--<div id="row" style="color:black">
+    <div class="col">Your Passord</div>
+    <div class="col"><input type="password" id="p"  onblur="chkblnk('p','error3')"/></div>
+    <div class="col" id="error3" style="color:red"></div>
+</div>
+<div id="row" style="color:black">
+    <div class="col">Conform Pass</div>
+    <div class="col"><input type="password" id="cp"  onblur="chkblnk('cp','error4')"/></div>
+    <div class="col" style="color:red" id="error4"></div>
+</div> -->
+<form>
+    <div id="row" style="color:black">
+        <div class="col">Your Passord</div>
+        <div class="col"><input type="password" name="pwd1" id="p"  onblur="checkForm('p','error3')"/></div>
+        <div class="col" id="error3" style="color:red"></div>
+    </div>
+   
+    <div id="row" style="color:black">
+     <div class="col">Confirm password</div>
+    <div class="col"><input type="password" name="pwd2" id="p"  onblur="checkForm('p','error3')"/></div>
+    <div class="col" id="error3" style="color:red"></div>
+    </div>
+</form>
+<div id="row" style="color:black">
+    <div class="col">Your Address</div>
+    <div class="col">
+    <textarea id="adds" onblur="chkblnk('adds','error5')"></textarea></div>
+    <div class="col" style="color:red" id="error5"></div>
+    <p align="center"><input type="submit"></p>
+</div>
+
+</div>
+</body>
+</html>
